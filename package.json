@@ -1,0 +1,33 @@
+{
+  "name": "pte",
+  "version": "0.0.1",
+  "description": "Pearson Language Tests",
+  "scripts": {
+    "lint": "eslint '**/*.ts'",
+    "fix:staged": "ts-node ./build/lint.ts",
+    "watch": "tsc --build ./build/tsconfig.dev.json --watch",
+    "compile": "tsc --build ./build/tsconfig.prod.json"
+  },
+  "eslintConfig": {
+    "extends": "./build/.eslintrc.json"
+  },
+  "dependencies": {
+    "koa": "^2.13.0",
+    "log4js": "^6.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run fix:staged"
+    }
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.3",
+    "@types/node": "^14.0.24",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "eslint": "^7.5.0",
+    "husky": "^4.2.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
