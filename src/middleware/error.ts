@@ -6,11 +6,13 @@ class ErrorHanlde {
     /**
      * 全局异常捕获
      */
-    async handler(ctx: Context, next: Next) {
-        await next().catch(err => {
-            ctx.status = 200;
-            this.handleUnknownError(ctx, err);
-        });
+    middleware() {
+        return async (ctx: Context, next: Next) => {
+            await next().catch(err => {
+                ctx.status = 200;
+                this.handleUnknownError(ctx, err);
+            });
+        };
     }
 
     /**
@@ -32,7 +34,4 @@ class ErrorHanlde {
     }
 }
 
-export default (): (ctx: Context, next: Next) => Promise<void> => {
-    const errorHandle = new ErrorHanlde();
-    return errorHandle.handler;
-};
+export default new ErrorHanlde();

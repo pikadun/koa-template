@@ -4,17 +4,19 @@ import 'common/logger';
 
 import App from 'koa';
 import body from 'koa-body';
-import route from './route';    
-import middleware from './middleware';
+import route from './route';
+import { request, error } from './middleware';
 
 function start() {
     const app = new App();
     app.proxy = true;
 
-    //  body parser
+    // body parser
     app.use(body());
+    // 错误处理
+    app.use(error.middleware());
     // 请求日志
-    app.use(middleware.request());
+    app.use(request.middleware());
     // 路由
     app.use(route.middleware());
 
