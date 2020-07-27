@@ -11,15 +11,15 @@ class BaseLogger {
         this.requestLogger = getLogger('request');
     }
 
-    info(msg: string) {
+    info(msg: string | Error) {
         this.infoLogger.info(msg);
     }
 
-    error(msg: string) {
+    error(msg: string | Error) {
         this.errorLogger.error(msg);
     }
 
-    request(msg: string) {
+    request(msg: string | Error) {
         this.requestLogger.info(msg);
     }
 }
