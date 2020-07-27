@@ -3,7 +3,7 @@
  * Generator it with command: `npm run schema`.
  */
 
-export interface ExampleSchema {
+export interface ParamTestTest {
     firstName: string;
     lastName: string;
     /**

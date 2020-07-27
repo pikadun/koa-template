@@ -35,7 +35,7 @@ function getOutPath(filePath: string): string {
     const outFolder = path.resolve(__dirname, '..', 'src', '@types');
     const outPath = filePath.replace(schemaFolder, outFolder).replace(/.json$/, '.d.ts');
     if (!fs.existsSync(outPath)) {
-        fs.mkdirSync(outPath.replace(path.basename(outPath), ''));
+        fs.mkdirSync(outPath.replace(path.basename(outPath), ''), { recursive: true });
     }
     return outPath;
 }

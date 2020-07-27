@@ -1,5 +1,5 @@
 {
-    "title": "Example Schema",
+    "title": "Param.Test.Test",
     "type": "object",
     "properties": {
         "firstName": {
