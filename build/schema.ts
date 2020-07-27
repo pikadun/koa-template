@@ -26,8 +26,7 @@ async function findFile(folder = schemaFolder) {
 async function compile(filePath: string) {
     if (filePath.match(/.json$/)) {
         const ts = await compileFromFile(filePath, DEFAULT_OPTIONS);
-        const outPath = getOutPath(filePath);
-        fs.writeFileSync(outPath, ts);
+        fs.writeFileSync(getOutPath(filePath), ts);
     }
 }
 
