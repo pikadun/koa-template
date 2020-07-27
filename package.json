@@ -17,10 +17,12 @@
     }
   },
   "_moduleAliases": {
-    "controller": "lib/modules/controller"
+    "controller": "lib/modules/controller",
+    "common": "lib/common"
   },
   "dependencies": {
     "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
     "koa-router": "^9.1.0",
     "log4js": "^6.3.0"
   },

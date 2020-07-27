@@ -1,37 +1,32 @@
-const level = 'info';
-const config = {
-    log: {
-        appenders: {
-            info: {
-                type: 'dateFile',
-                filename: './logs/info/info',
-                pattern: 'yyyy-MM-dd.log',
-                alwaysIncludePattern: true
-            },
-            error: {
-                type: 'dateFile',
-                filename: './logs/error/error',
-                pattern: 'yyyy-MM-dd.log',
-                alwaysIncludePattern: true
-            },
-            http: {
-                type: 'dateFile',
-                filename: './logs/http/http',
-                pattern: 'yyyy-MM-dd.log',
-                alwaysIncludePattern: true
-            },
-            console: {
-                type: 'console'
-            }
+import { Configuration } from 'log4js';
+
+const log: Configuration = {
+    appenders: {
+        info: {
+            type: 'dateFile',
+            filename: './log/info/info.log',
+            keepFileExt: true
         },
-        categories: {
-            default: { appenders: ['console'], level },
-            info: { appenders: ['info', 'console'], level },
-            error: { appenders: ['error', 'console'], level },
-            http: { appenders: ['http'], level }
+        error: {
+            type: 'dateFile',
+            filename: './log/error/error.log',
+            keepFileExt: true
         },
-        replaceConsole: true
+        request: {
+            type: 'dateFile',
+            filename: './log/request/request.log',
+            keepFileExt: true
+        },
+        console: {
+            type: 'console'
+        }
+    },
+    categories: {
+        default: { appenders: ['console'], level: 'info' },
+        info: { appenders: ['info', 'console'], level: 'info' },
+        error: { appenders: ['error', 'console'], level: 'info' },
+        request: { appenders: ['request'], level: 'info' }
     }
 };
 
-export default config;
+export default { log };
