@@ -2,6 +2,7 @@ import 'koa-body';
 import { Context, Next } from 'koa';
 import { ErrorCode, ErrorCodeLabel } from 'common/enum';
 import * as error from 'common/error';
+import wechat from 'common/wechat';
 
 class ErrorHanlde {
     /**
@@ -32,6 +33,8 @@ class ErrorHanlde {
     private handleUnknownError(ctx: Context, err: Error): void {
         ctx.body = this.getResponseBody(ErrorCode.unknown);
         global.LOGGER.error(err);
+        // 发送消息
+        wechat.send(err.message);
     }
 
     /**
