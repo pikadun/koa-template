@@ -1,6 +1,7 @@
 import 'koa-body';
 import { Context, Next } from 'koa';
 import { ErrorCode, ErrorCodeLabel } from 'common/enum';
+import * as error from 'common/error';
 
 class ErrorHanlde {
     /**
@@ -10,7 +11,17 @@ class ErrorHanlde {
         return async (ctx: Context, next: Next) => {
             await next().catch(err => {
                 ctx.status = 200;
-                this.handleUnknownError(ctx, err);
+
+                switch (true) {
+                    case err instanceof error.ValidateError:
+                        this.handleValidateError(ctx, err);
+                        break;
+                    case err instanceof error.BizError:
+                        this.handleBizError(ctx, err);
+                        break;
+                    default:
+                        this.handleUnknownError(ctx, err);
+                }
             });
         };
     }
@@ -24,12 +35,28 @@ class ErrorHanlde {
     }
 
     /**
+     * 处理参数验证异常
+     */
+    private handleValidateError(ctx: Context, err: error.ValidateError): void {
+        ctx.body = this.getResponseBody(err.code, err.data);
+        global.LOGGER.info(err);
+    }
+
+    /**
+     * 处理业务异常
+     */
+    private handleBizError(ctx: Context, err: error.BizError): void {
+        ctx.body = this.getResponseBody(err.code);
+    }
+
+    /**
      * 根据错误码生成错误信息
      */
-    private getResponseBody(code: ErrorCode) {
+    private getResponseBody(code: ErrorCode, data?: unknown) {
         return {
             code: code,
-            msg: ErrorCodeLabel.get(code)
+            msg: ErrorCodeLabel.get(code),
+            data
         };
     }
 }

@@ -11,4 +11,5 @@ export interface ParamTestTest {
      */
     age?: number;
     hairColor?: 'black' | 'brown' | 'blue';
+    [k: string]: unknown;
 }

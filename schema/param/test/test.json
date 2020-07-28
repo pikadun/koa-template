@@ -1,4 +1,5 @@
 {
+    "$schema": "http://json-schema.org/draft-07/schema",
     "title": "Param.Test.Test",
     "type": "object",
     "properties": {
@@ -22,7 +23,6 @@
             "type": "string"
         }
     },
-    "additionalProperties": false,
     "required": [
         "firstName",
         "lastName"

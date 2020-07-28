@@ -21,9 +21,11 @@
   },
   "_moduleAliases": {
     "controller": "lib/modules/controller",
-    "common": "lib/common"
+    "common": "lib/common",
+    "middleware": "lib/middleware"
   },
   "dependencies": {
+    "ajv": "^6.12.3",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "koa-router": "^9.1.0",
