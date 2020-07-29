@@ -32,12 +32,21 @@ class Wechat {
 }
 
 class BaseMessage {
+    /**
+     * 收信人
+     */
     touser = global.CONFIG.wechat.touser;
+    /**
+     * 应用Id
+     */
     agentid = global.CONFIG.wechat.agentid;
     project = 'PTE';
     env = process.env.NODE_ENV || 'development';
 }
 
+/**
+ * 文本消息
+ */
 class Text extends BaseMessage {
     msgtype = 'text';
     text = {

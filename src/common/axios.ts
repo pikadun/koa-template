@@ -1,5 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 
+/**
+ * Axios工厂，用于创建不同的axios实例
+ * @param config Axios 配置文件
+ * @param reqOnFulfilled 请求完成拦截函数
+ * @param resOnFulfilled 响应完成拦截函数
+ */
 export const AxiosFactory = (
     config: AxiosRequestConfig = {},
     reqOnFulfilled = null,

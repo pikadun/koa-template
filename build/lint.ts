@@ -1,7 +1,8 @@
 #! /usr/bin/env node
 import { execSync } from 'child_process';
-const stagedFiles = execSync('git diff --cached --name-only --diff-filter=ACM').toString().split('\n');
 
+// 获取全部暂存区的文件，并对暂存区文件进行lint验证
+const stagedFiles = execSync('git diff --cached --name-only --diff-filter=ACM').toString().split('\n');
 let pass = true;
 const result = [];
 for (let i = 0; i < stagedFiles.length; i++) {

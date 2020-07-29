@@ -9,6 +9,9 @@ DEFAULT_OPTIONS.style.tabWidth = 4;
 
 const schemaFolder = path.resolve(__dirname, '..', 'schema');
 
+/**
+ * 递归查找schema文件夹内的json文件，并转换成对应dts文件
+ */
 async function findFile(folder = schemaFolder) {
     const files = fs.readdirSync(folder);
     for (let i = 0; i < files.length; i++) {
@@ -23,6 +26,10 @@ async function findFile(folder = schemaFolder) {
     }
 }
 
+/**
+ * 将指定json文件转换成dts文件
+ * 同时输出到`src/@types`文件夹内
+ */
 async function compile(filePath: string) {
     if (filePath.match(/.json$/)) {
         const ts = await compileFromFile(filePath, DEFAULT_OPTIONS);
@@ -30,6 +37,9 @@ async function compile(filePath: string) {
     }
 }
 
+/**
+ * 根据json文件路径，生成对应dts文件路径
+ */
 function getOutPath(filePath: string): string {
     const outFolder = path.resolve(__dirname, '..', 'src', '@types');
     const outPath = filePath.replace(schemaFolder, outFolder).replace(/.json$/, '.d.ts');

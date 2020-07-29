@@ -6,6 +6,6 @@ const config = Object.assign(common, {
     }
 });
 
-config.wechat.touser = 'WangGang|ZhouXu';
+config.wechat.touser = 'WangGang';
 
 export default config;

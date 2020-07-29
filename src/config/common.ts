@@ -33,7 +33,7 @@ const wechat = {
     corpid: 'wwed2e62dc088e450c',
     corpsecret: '6-HHHDPFZ3_mtl3Exklz0EGKhL0k7DXsl33wXLDKph0',
     agentid: '1000003',
-    touser: 'WangGang|ZhouXu|DiaoChengLei'
+    touser: 'WangGang|DiaoChengLei'
 };
 
 export default { log, wechat };

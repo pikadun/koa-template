@@ -4,7 +4,13 @@ import fs from 'fs';
 import Ajv, { ErrorObject } from 'ajv';
 
 class Validator {
+    /**
+     * json 文件的路径
+     */
     private jsonBasePath = path.resolve(__dirname, '..', '..', 'schema', 'param');
+    /**
+     * schema 缓存
+     */
     private jsonSchemaMap = new Map<string, Schema>();
 
     middleware(position: 'body' | 'query') {
@@ -27,13 +33,23 @@ class Validator {
         };
     }
 
+    /**
+     * 根据请求地址获取对应的schema
+     * @param path 请求地址，不包含协议、域名、端口号及查询部分
+     */
     private getSchema(path: string): Schema | undefined {
         let schema = this.jsonSchemaMap.get(path);
+
         if (schema === undefined) {
             const basePath = path.replace(/\/api\/v[0-9]+/, this.jsonBasePath) + '.json';
-            if (fs.existsSync(basePath)) {
-                schema = JSON.parse(fs.readFileSync(basePath).toString());
+            if (fs.existsSync(basePath) === false) {
+                return;
             }
+            schema = JSON.parse(fs.readFileSync(basePath).toString());
+            if (schema === undefined) {
+                return;
+            }
+            this.jsonSchemaMap.set(path, schema);
         }
         return schema;
     }
