@@ -1,7 +1,5 @@
 # Koa template
 
-Pearson Language Tests.
-
 ## Start
 
 ```bash
